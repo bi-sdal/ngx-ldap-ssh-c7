@@ -1,0 +1,2 @@
+docker run -dit -v /sys/fs/cgroup:/sys/fs/cgroup:ro -v $(pwd)/nginx_passw.conf:/etc/nginx/nginx.conf -v $(pwd)/htpasswd:/etc/nginx/.htpasswd -v $(pwd)/VLDS_Data_Quality:/etc/nginx/html/VLDS_Data_Quality  --cap-add=SYS_ADMIN -p 8686:80  --name ngx dads2busy/c7-ssh-ldap-ngx
+
