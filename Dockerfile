@@ -1,14 +1,15 @@
-FROM dads2busy/c7-ssh-ldap
+FROM sdal/ldap-ssh-c7
 MAINTAINER "Aaron D. Schroeder" <aschroed@vt.edu>
 
 ## Install Prerequisites
 RUN yum -y install php-fpm php-cli php-mcrypt php-gd php-ldap openssl mod_ssl wget pam-devel
 RUN yum -y groupinstall "Development Tools"
 RUN mkdir -p /tmp
+
 COPY /nginx-1.10.3 /tmp/nginx-1.10.3
 COPY /pcre-8.40 /tmp/pcre-8.40
 COPY /zlib-1.2.11 /tmp/zlib-1.2.11
-RUN cd /tmp/pcre-8.40 && ./configure && make && make install
+
 RUN cd /tmp/zlib-1.2.11 && ./configure && make && make install
 RUN yum -y install openssl-devel
 COPY /nginx.service /lib/systemd/system
